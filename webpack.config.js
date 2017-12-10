@@ -10,7 +10,7 @@ const GLOBALS = {
 };
 
 var HtmlWebpackConfig = {
-    title: 'link-shell',
+    title: 'bbs-app',
     filename: 'index.html',
     template: "./src/index.html",
     hash: true,

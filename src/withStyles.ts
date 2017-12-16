@@ -36,6 +36,7 @@ const $css: typeof css = (...style: any[]) => {
 };
 
 export const appThemes = {
+  default: DefaultTheme,
   light: LightTheme,
   dark: DarkTheme
 };

@@ -13,7 +13,10 @@ describe('<HomePage />', () => {
       <HomePage
         {...{
           locale: 'en',
-          theme: 'light'
+          theme: 'light',
+          location: {
+            pathname: '/news'
+          }
         } as any}
       />
     );

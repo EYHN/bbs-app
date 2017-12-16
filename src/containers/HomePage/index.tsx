@@ -18,6 +18,13 @@ import saga from './saga';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { makeSelectHitokoto } from 'containers/HomePage/selectors';
+import SearchBar from 'components/SearchBar';
+import AppBar from 'components/AppBar';
+import BottomNavigation from 'components/BottomNavigation';
+import BottomNavigationLink from 'components/BottomNavigation/Link';
+import FiberNewIcon from 'components/icons/FiberNew';
+import AccountCircleIcon from 'components/icons/AccountCircle';
+import ListIcon from 'components/icons/List';
 
 interface IHomePageProps {
 }
@@ -31,20 +38,24 @@ const mapStateToProps = createSelector(
 
 export const mapDispatchToProps = (dispatch: Dispatch<{}>) => ({
   changeLocale: (locale: string) => { dispatch(changeLocale(locale)); },
-  changeTheme: (theme: string) => {dispatch(changeTheme(theme)); },
+  changeTheme: (theme: string) => { dispatch(changeTheme(theme)); },
   onGetHitokoto: () => (dispatch(loadHitokoto()))
 });
 
 const stateProps = returntypeof(mapStateToProps);
 const dispatchProps = returntypeof(mapDispatchToProps);
 
-type Props = typeof stateProps & IHomePageProps & typeof dispatchProps;
+type Props = typeof stateProps & IHomePageProps & typeof dispatchProps & RouteComponentProps<{}>;
 
 export class HomePage extends React.PureComponent<Props, undefined> {
 
   public render() {
+    const pathname = this.props.location.pathname || '/news';
     return (
       <div>
+        <AppBar>
+          <SearchBar />
+        </AppBar>
         <Helloworld />
         <select
           name='Locale'
@@ -73,6 +84,26 @@ export class HomePage extends React.PureComponent<Props, undefined> {
           }
         </select>
         <p>{this.props.hitokoto}</p>
+        <BottomNavigation>
+          <BottomNavigationLink
+            to='/news'
+            active={pathname.startsWith('/news')}
+            label='News'
+            icon={FiberNewIcon}
+          />
+          <BottomNavigationLink
+            to='/categories'
+            active={pathname.startsWith('/categories')}
+            label='Categories'
+            icon={ListIcon}
+          />
+          <BottomNavigationLink
+            to='/account'
+            active={pathname.startsWith('/account')}
+            label='Account'
+            icon={AccountCircleIcon}
+          />
+        </BottomNavigation>
       </div>
     );
   }

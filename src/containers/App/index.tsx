@@ -8,7 +8,9 @@ const App: React.SFC<{}> = (props) =>
   <div>
     <Header />
     <Switch>
-      <Route exact path='/' component={HomePage} />
+      <Route exact path='/news' component={HomePage} />
+      <Route exact path='/categories' component={HomePage} />
+      <Route exact path='/account' component={HomePage} />
     </Switch>
   </div>;
 

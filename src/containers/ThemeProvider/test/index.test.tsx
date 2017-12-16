@@ -7,6 +7,7 @@ import createHistory from 'history/createBrowserHistory';
 import { withStyles, appThemes } from 'withStyles';
 import { IWithStyleProps } from 'Interfaces/react-with-style';
 import { DEFAULT_THEMENAME } from 'containers/App/constants';
+import merge from 'lodash/merge';
 
 const testComponent: React.SFC<any> = () =>
   <div />;
@@ -33,7 +34,7 @@ describe('<ConnectedThemeProvider />', () => {
 
   it('should render the default theme style', () => {
     const TestComponent: React.SFC<IWithStyleProps> = (props) => {
-      expect(props.theme).toEqual(appThemes[DEFAULT_THEMENAME]);
+      expect(props.theme).toEqual(merge(appThemes.default, appThemes[DEFAULT_THEMENAME]));
       expect(props.styles).toBeDefined();
       return <div>test</div>;
     };

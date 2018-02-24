@@ -1,33 +1,34 @@
 import { withStyles, css } from 'withStyles';
 import * as React from 'react';
 import { IWithStyleProps } from 'Interfaces/react-with-style';
-import mixingProps from 'utils/mixingProps';
+import mergeProps from 'utils/mergeProps';
+import Card from 'components/Card';
 
 @withStyles(({ color }) => ({
   BottomNavigation: {
-    'display': 'flex',
-    'position': 'fixed',
-    'bottom': '0px',
-    'width': '100%',
-    'background-color': color.BottomNavigation,
-    'color': color.BottomNavigationText,
-    'box-shadow': '0 0 4px 0 rgba(0,0,0,0.12), 0 4px 4px 0 rgba(0,0,0,0.24)',
-    'min-height': '56px',
-    'justify-content': 'center',
-    'align-items': 'center'
+    display: 'flex',
+    position: 'relative',
+    width: '100%',
+    backgroundColor: color.BottomNavigation,
+    color: color.BottomNavigationText,
+    minHeight: '56px',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 }))
-export default class BottomNavigation extends React.PureComponent<IWithStyleProps, undefined> {
+export default class BottomNavigation
+    extends React.PureComponent<IWithStyleProps & React.HTMLProps<HTMLElement> & { bottomFixed?: boolean }, undefined> {
   public render() {
     const {
       theme,
       styles,
+      bottomFixed,
       ...otherProps
     } = this.props;
     return (
-        <article
+        <Card
           {
-            ...mixingProps(otherProps, css(this.props.styles.BottomNavigation))
+            ...mergeProps(css(styles.BottomNavigation), otherProps)
           }
         />
       );

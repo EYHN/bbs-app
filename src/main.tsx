@@ -4,12 +4,17 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import LanguageProvider from './containers/LanguageProvider';
 import configureStore from './store';
+// tslint:disable-next-line:no-import-side-effect
 import 'sanitize.css/sanitize.css';
 import { translationMessages } from './i18n';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
 import App from './containers/App';
 import ThemeProvider from './containers/ThemeProvider/index';
+// tslint:disable-next-line:no-import-side-effect
+import 'global.css';
+// tslint:disable-next-line:no-import-side-effect
+import 'file-loader?name=manifest.json!manifest.json';
 
 const openSansObserver = new FontFaceObserver('Noto Sans', {});
 
@@ -46,7 +51,7 @@ if (!window.Intl) {
   }))
     .then(() => Promise.all([
       System.import('intl/locale-data/jsonp/en.js'),
-      System.import('intl/locale-data/jsonp/de.js'),
+      System.import('intl/locale-data/jsonp/de.js')
     ]))
     .then(() => render(translationMessages, App))
     .catch((err) => {

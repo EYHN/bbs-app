@@ -1,28 +1,41 @@
 import { withStyles, css } from 'withStyles';
 import * as React from 'react';
 import { IWithStyleProps } from 'Interfaces/react-with-style';
-import mixingProps from 'utils/mixingProps';
+import mergeProps from 'utils/mergeProps';
+import Card from 'components/Card';
+import AppBarLayout, {IProps as AppBarLayoutProps} from './AppBarLayout';
 
 @withStyles(({ color }) => ({
   AppBar: {
-    'background-color': color.AppBar,
-    'box-shadow': '0 0 4px 0 rgba(0,0,0,0.12), 0 4px 4px 0 rgba(0,0,0,0.24)',
-    'min-height': '56px'
+    backgroundColor: color.AppBar,
+    minHeight: '56px',
+    color: color.AppBarText,
+    position: 'relative'
   }
 }))
-export default class AppBar extends React.PureComponent<IWithStyleProps, undefined> {
+export default class AppBar extends React.PureComponent<IWithStyleProps & AppBarLayoutProps> {
   public render() {
     const {
       theme,
       styles,
+      children,
+      leftIcon,
+      titleText,
+      rightIcon,
       ...otherProps
     } = this.props;
+    const layout = (leftIcon || titleText || rightIcon) &&
+      <AppBarLayout {...{leftIcon, titleText, rightIcon}} />;
     return (
-        <article
-          {
-            ...mixingProps(otherProps, css(this.props.styles.AppBar))
-          }
-        />
-      );
+      <Card
+        {
+        ...mergeProps(css(this.props.styles.AppBar), otherProps)
+        }
+        up
+      >
+        {layout}
+        {children}
+      </Card>
+    );
   }
 }

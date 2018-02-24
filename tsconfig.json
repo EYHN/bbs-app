@@ -10,6 +10,7 @@
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "node",
+        "noUnusedLocals": true,
         "typeRoots": [
             "./node_modules/@types"
         ]

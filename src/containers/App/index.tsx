@@ -4,14 +4,16 @@ import HomePage from 'containers/HomePage/Loadable';
 
 import Header from './Header';
 
-const App: React.SFC<{}> = (props) =>
-  <div>
+const App: React.SFC<{}> = () => (
+  <>
     <Header />
     <Switch>
-      <Route exact path='/news' component={HomePage} />
-      <Route exact path='/categories' component={HomePage} />
-      <Route exact path='/account' component={HomePage} />
+      <Route exact path='/' component={HomePage} />
+      <Route path='/news' component={HomePage} />
+      <Route path='/categories' component={HomePage} />
+      <Route path='/account' component={HomePage} />
     </Switch>
-  </div>;
+  </>
+);
 
 export default App;

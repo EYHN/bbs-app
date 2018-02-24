@@ -12,7 +12,7 @@
     ]
   ],
   "plugins": [
-    "lodash",
+    ["lodash", { "id": ["lodash", "recompose"] }],
     [
       "transform-runtime",
       {

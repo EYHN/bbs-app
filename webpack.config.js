@@ -26,7 +26,8 @@ module.exports = {
     ],
     output: {
         filename: "bundle.js",
-        path: __dirname + "/dist"
+        path: __dirname + "/dist",
+        publicPath: '/'
     },
     
     devtool: "eval-source-map",
@@ -58,44 +59,13 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(scss)$/,
-                use: [
-                    {
-                        loader: 'style-loader'
-                    },
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: true,
-                            localIdentName: "[path][name]---[local]---[hash:base64:5]",
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: { sourceMap: true }
-                    },
-                    {
-                        loader: "sass-loader",
-                        options: {
-                            sourceMap: true
-                        }
-                    }
-                ]
-            },
-            {
                 test: /\.(css)$/,
                 use: [
                     {
                         loader: 'style-loader'
                     },
                     {
-                        loader: "css-loader",
-                        options: {
-                            modules: true,
-                            localIdentName: "[path][name]---[local]---[hash:base64:5]",
-                            sourceMap: true
-                        }
+                        loader: "css-loader"
                     },
                     {
                         loader: "postcss-loader",
@@ -139,7 +109,7 @@ module.exports = {
     },
     devServer: {
         port: process.env.PORT || 8888,
-        host: 'localhost',
+        host: '0.0.0.0',
         publicPath: '/',
         contentBase: path.resolve(__dirname, "src"),
         historyApiFallback: true,

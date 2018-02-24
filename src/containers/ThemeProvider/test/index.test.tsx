@@ -7,10 +7,7 @@ import createHistory from 'history/createBrowserHistory';
 import { withStyles, appThemes } from 'withStyles';
 import { IWithStyleProps } from 'Interfaces/react-with-style';
 import { DEFAULT_THEMENAME } from 'containers/App/constants';
-import merge from 'lodash/merge';
-
-const testComponent: React.SFC<any> = () =>
-  <div />;
+import { merge } from 'lodash';
 
 describe('<ThemeProvider />', () => {
 
@@ -38,7 +35,7 @@ describe('<ConnectedThemeProvider />', () => {
       expect(props.styles).toBeDefined();
       return <div>test</div>;
     };
-    const TestComponentWithStyles = withStyles((theme) => theme)(TestComponent);
+    const TestComponentWithStyles = withStyles(() => ({}))(TestComponent);
     const renderedComponent = mount(
       <Provider store={store}>
         <ConnectedThemeProvider>

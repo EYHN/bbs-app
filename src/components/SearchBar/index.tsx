@@ -1,9 +1,9 @@
 import React from 'react';
 import { css, withStyles } from 'withStyles';
 import { IWithStyleProps } from 'Interfaces/react-with-style';
-import SearchIcon from 'components/icons/Search';
-import MicIcon from 'components/icons/Mic';
-import mixingProps from 'utils/mixingProps';
+import SearchIcon from 'components/Icons/Search';
+import MicIcon from 'components/Icons/Mic';
+import mergeProps from 'utils/mergeProps';
 
 interface ISearchBarProps {
 }
@@ -41,7 +41,7 @@ export default class SearchBar extends React.PureComponent<
     return (
       <article
         {
-        ...mixingProps(otherProps, css(this.props.styles.SearchBar))
+          ...mergeProps(css(this.props.styles.SearchBar), otherProps)
         }
       >
         <SearchIcon {...css(this.props.styles.icon)} />

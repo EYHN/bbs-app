@@ -3,6 +3,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var OfflinePlugin = require('offline-plugin');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const GLOBALS = {
     'process.env.NODE_ENV': JSON.stringify('production'),
@@ -45,8 +46,9 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin(GLOBALS),
         new HtmlWebpackPlugin(HtmlWebpackConfig),
-        new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
+        new UglifyJsPlugin({ sourceMap: true }),
         new OfflinePlugin(),
+        new BundleAnalyzerPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: "vendor",
             filename: "vendor.js"
@@ -72,44 +74,13 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(scss)$/,
-                use: [
-                    {
-                        loader: 'style-loader'
-                    },
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: true,
-                            localIdentName: "[path][name]---[local]---[hash:base64:5]",
-                            sourceMap: false
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: { sourceMap: true }
-                    },
-                    {
-                        loader: "sass-loader",
-                        options: {
-                            sourceMap: true
-                        }
-                    }
-                ]
-            },
-            {
                 test: /\.(css)$/,
                 use: [
                     {
                         loader: 'style-loader'
                     },
                     {
-                        loader: "css-loader",
-                        options: {
-                            modules: true,
-                            localIdentName: "[path][name]---[local]---[hash:base64:5]",
-                            sourceMap: false
-                        }
+                        loader: "css-loader"
                     },
                     {
                         loader: "postcss-loader",

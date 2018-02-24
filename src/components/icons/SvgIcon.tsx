@@ -1,11 +1,15 @@
 import React from 'react';
+import { pure } from 'recompose';
+
+export type ISvgIconProps = React.SVGProps<SVGSVGElement>;
 
 const defaultProps = {
   viewBox: '0 0 24 24',
   color: 'inherit',
+  height: '24px'
 };
 
-const SvgIcon = (props: React.HTMLProps<SVGSVGElement>) =>
+const SvgIcon = (props: ISvgIconProps) => (
   <svg
     {
       ...{
@@ -13,6 +17,7 @@ const SvgIcon = (props: React.HTMLProps<SVGSVGElement>) =>
         ...props
       }
     }
-  />;
+  />
+);
 
-export default SvgIcon;
+export default pure(SvgIcon);

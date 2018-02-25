@@ -1,0 +1,7 @@
+{
+  "short_name": "huaji BBS",
+  "name": "huaji's BBS",
+  "background_color": "#414141",
+  "start_url": "/",
+  "display": "standalone"
+}

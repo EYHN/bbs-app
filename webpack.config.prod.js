@@ -48,7 +48,7 @@ module.exports = {
         new HtmlWebpackPlugin(HtmlWebpackConfig),
         new UglifyJsPlugin({ sourceMap: true }),
         new OfflinePlugin(),
-        new BundleAnalyzerPlugin(),
+        !!process.env.analyzer ? new BundleAnalyzerPlugin() : () => undefined,
         new webpack.optimize.CommonsChunkPlugin({
             name: "vendor",
             filename: "vendor.js"
